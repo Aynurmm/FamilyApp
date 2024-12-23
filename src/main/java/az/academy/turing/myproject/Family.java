@@ -52,6 +52,53 @@ public class Family {
         this.pet = pet;
     }
 
+
+    public void addChild(Human  child){
+        Human[] newChildren = new Human[children.length + 1];
+
+        for (int i = 0; i < children.length; i++) {
+            newChildren[i] = children[i];
+        }
+        newChildren[newChildren.length-1]=child;
+
+        this.children=newChildren;
+//        this.children = newChildren;
+        child.setFamily(this);
+    }
+
+    public boolean deleteChild(int index) {
+        if (index < 0 || index >= children.length) {
+            System.out.println("Invalid index");
+            return false;
+        }
+        Human[] newChildren = new Human[children.length - 1];
+        for (int i = 0, j = 0; i < children.length; i++) {
+            if (i != index) {
+                newChildren[j++] = children[i];
+            } else {
+                children[i].setFamily(null);
+            }
+        }
+        children = newChildren;
+        return true;
+    }
+
+    public boolean deleteChild(Human child) {
+        for (int i = 0; i < children.length; i++) {
+            if (children[i].equals(child)) {
+                return deleteChild(i);
+            }
+        }
+        return false;
+    }
+
+    public int countFamily() {
+        if(children!=null){
+        return 2 + children.length;
+        }
+        return 2;
+    };
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,39 +114,6 @@ public class Family {
         return result;
     }
 
-
-    public void addChild(Human  child){
-        Human[] newChildren = new Human[children.length + 1];
-
-        for (int i = 0; i < children.length; i++) {
-            newChildren[i] = children[i];
-        }
-        newChildren[newChildren.length-1]=child;
-
-        this.children=newChildren;
-        this.children = newChildren;
-    }
-
-    public boolean deleteChild(int index) {
-        if (index < 0 || index >= children.length) {
-            System.out.println("Invalid index");
-            return false;
-        }
-        Human[] newChildren = new Human[children.length - 1];
-        for (int i = 0, j = 0; i < children.length; i++) {
-            if (i != index) {
-                newChildren[j++] = children[i];
-            } else {
-                children[i].setFamily(null); // Child-family bağlantısını kaldır
-            }
-        }
-        children = newChildren;
-        return true;
-    }
-
-    public int countFamily() {
-        return 2 + children.length; // Anne ve baba + çocuk sayısı
-    }
     @Override
     public String toString() {
         return "Family{" +
