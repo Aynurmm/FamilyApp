@@ -9,6 +9,7 @@ public class Human {
     private String surname;
     private int year;
     private int iq;
+    private Pet pet;
     private DayOfWeek[][] schedule;
     private Family family;
 
@@ -31,16 +32,6 @@ public class Human {
 
     public Human() {
 
-    }
-
-
-    public void greetPet() {
-        System.out.println("Hello, " + family.getPet().getNickName());
-    }
-
-    public void describePet() {
-        String slyness = (family.getPet().getTrickLevel() > 50) ? "Very sly" : "Almost not sly";
-        System.out.println("I have an " + family.getPet().getSpecies() + "is " + family.getPet().getAge() + "years old.He is very  ");
     }
 
     public String getName() {
@@ -91,9 +82,25 @@ public class Human {
         this.family = family;
     }
 
+
+    public void greetPet() {
+        System.out.println("Hello, " + family.getPet().getNickName());
+    }
+
+    public void describePet() {
+        String slyness = (family.getPet().getTrickLevel() > 50) ? "Very sly" : "Almost not sly";
+        System.out.println("I have an " + family.getPet().getSpecies() + "is " + family.getPet().getAge() + "years old.He is very  ");
+    }
+
     public boolean feedPet(boolean isFeedingtime) {
+
         Random random = new Random();
         int randomNumb = random.nextInt(101);
+
+        if (pet == null) {
+            System.out.println("No pet assigned to " + name);
+            return false;
+        }
         if (isFeedingtime) {
             System.out.println("\"Hm... I will feed Jack's dog.\"");
             return true;

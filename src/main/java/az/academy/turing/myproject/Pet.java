@@ -1,6 +1,7 @@
 package az.academy.turing.myproject;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public  abstract class Pet {
     private Species species;
@@ -18,6 +19,12 @@ public  abstract class Pet {
 
     public Pet( String nickName) {
         this.nickName = nickName;
+    }
+
+    public Pet(Species species,String nickName,int trickLevel){
+        this.species=species;
+        this.nickName=nickName;
+        this.trickLevel=trickLevel;
     }
 
     public Pet() {
@@ -75,8 +82,20 @@ public  abstract class Pet {
         System.out.println("I need to cover it up");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pet pet = (Pet) o;
+        return age == pet.age && trickLevel == pet.trickLevel && species == pet.species && Objects.equals(nickName, pet.nickName) && Arrays.equals(habits, pet.habits);
+    }
 
-
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(species, nickName, age, trickLevel);
+        result = 31 * result + Arrays.hashCode(habits);
+        return result;
+    }
 
     @Override
     public String toString() {

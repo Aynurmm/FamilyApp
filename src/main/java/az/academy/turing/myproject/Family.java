@@ -15,9 +15,9 @@ public class Family {
         }
         this.mother = mother;
         this.father = father;
+        this.mother.setFamily(this);
+        this.father.setFamily(this);
         this.children=new Human[0];
-
-
     }
 
     public Human getMother() {

@@ -8,7 +8,7 @@ public class DomesticCat extends Pet implements Foulable {
 
     @Override
     public void respond() {
-        System.out.println("Meow! I am a domestic cat.");
+        System.out.println("Meow! I am a domestic cat named "+getNickName()+".");
     }
 
     @Override

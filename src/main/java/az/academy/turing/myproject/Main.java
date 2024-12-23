@@ -7,7 +7,7 @@ public class Main {
         Family family = new Family(mother, father);
 
         Pet dog = new Dog("Buddy", 5, 70, new String[]{"running", "playing"});
-//        Family family = new Family();
+
         family.setPet(dog);
 
         Man man = new Man("John", "Doe", 1985, 120, null, family);
@@ -37,8 +37,6 @@ public class Main {
 for (DayOfWeek dayOfWeek:DayOfWeek.values()){
     System.out.println(dayOfWeek.name() + ":"+ schedule[dayOfWeek.ordinal()].toString());
 }
-
-
 
     }
 }
